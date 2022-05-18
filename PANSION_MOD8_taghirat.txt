@@ -1,0 +1,32 @@
+drop table statusmalisarchives;
+
+CREATE TABLE `statusmalistransactions`  (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `statusmali_id` int NOT NULL,
+  `transaction_id` int NOT NULL,
+  `order_id` int NOT NULL,
+  `status_order_id` int NULL DEFAULT NULL,
+  `order_total_price_before_takhfif` decimal(15, 2) NULL DEFAULT NULL,
+  `takhfif` decimal(15, 2) NULL DEFAULT NULL,
+  `order_finally_price` decimal(15, 2) NULL DEFAULT NULL,
+  `wallet_amount_paid` decimal(15, 2) NULL DEFAULT NULL,
+  `dargah_amount_paid` decimal(15, 2) NULL DEFAULT NULL,
+  `naghdi_amount_paid` decimal(15, 2) NULL DEFAULT NULL,
+  `qest_amount_paid` decimal(15, 2) NULL DEFAULT NULL,
+  `maande_amount` decimal(15, 2) NULL DEFAULT NULL,
+  `financial_status` enum('paid','notpaid','partiallypaid','vajh_returned','vajh_returned_jarime') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+
+  INDEX `statusmalisarchives_statusmalis_indx`(`statusmali_id`) USING BTREE,
+  INDEX `statusmalisarchives_transaction_indx`(`transaction_id`) USING BTREE,
+  INDEX `statusmalisarchives_orders_indx`(`order_id`) USING BTREE,
+  INDEX `statusmalisarchives__status_orders_indx`(`status_order_id`) USING BTREE,
+	
+  CONSTRAINT `statusmalisarchives__status_orders_fk` FOREIGN KEY (`status_order_id`) REFERENCES `status_orders` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `statusmalisarchives__transactions_fk` FOREIGN KEY (`transaction_id`) REFERENCES `transactions` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `statusmalisarchives_orders_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `statusmalisarchives_statusmalis_fk` FOREIGN KEY (`statusmali_id`) REFERENCES `statusmalis` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
