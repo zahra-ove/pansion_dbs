@@ -109,3 +109,6 @@ alter table statusmalichangedorders change returned_type returned_type ENUM('naq
 
 //================= statusmalis modification
 alter table statusmalis add column total_from_parent_order_amount_paid decimal(15,2) null default null;
+
+//================= statusmalistransactions modification
+alter table statusmalistransactions add column from_parent_order_amount decimal(15,2) null default null;
