@@ -98,17 +98,17 @@ CREATE TABLE `statusmalichangedorders` (
 
 
 //===================================================================
-alter table statusmalichangedorders add column usedin_newchildorder_transaction_id int null default null;
-alter table statusmalichangedorders add index statusmalichangedorders_transaction_indx(usedin_newchildorder_transaction_id);
-alter table statusmalichangedorders add index statusmalichangedorders_transaction_indx(usedin_newchildorder_transaction_id);
-alter table statusmalichangedorders  add constraint statusmalichangedorders_transaction_fk foreign key (usedin_newchildorder_transaction_id) references transactions(id);
-alter table statusmalichangedorders add column usedin_newchildorder_amount decimal(15,2) null default null;
+-- alter table statusmalichangedorders add column usedin_newchildorder_transaction_id int null default null;
+-- alter table statusmalichangedorders add index statusmalichangedorders_transaction_indx(usedin_newchildorder_transaction_id);
+-- alter table statusmalichangedorders add index statusmalichangedorders_transaction_indx(usedin_newchildorder_transaction_id);
+-- alter table statusmalichangedorders  add constraint statusmalichangedorders_transaction_fk foreign key (usedin_newchildorder_transaction_id) references transactions(id);
+-- alter table statusmalichangedorders add column usedin_newchildorder_amount decimal(15,2) null default null;
 
-alter table statusmalichangedorders change returned_type returned_type ENUM('naqd','wallet','naqd_wallet', 'usedin_childorder', 'usedin_childorder_wallet', 'usedin_childorder_naqd') DEFAULT NULL;
+-- alter table statusmalichangedorders change returned_type returned_type ENUM('naqd','wallet','naqd_wallet', 'usedin_childorder', 'usedin_childorder_wallet', 'usedin_childorder_naqd') DEFAULT NULL;
 
 
-//================= statusmalis modification
-alter table statusmalis add column total_from_parent_order_amount_paid decimal(15,2) null default null;
+-- //================= statusmalis modification
+-- alter table statusmalis add column total_from_parent_order_amount_paid decimal(15,2) null default null;
 
-//================= statusmalistransactions modification
-alter table statusmalistransactions add column from_parent_order_amount decimal(15,2) null default null;
+-- //================= statusmalistransactions modification
+-- alter table statusmalistransactions add column from_parent_order_amount decimal(15,2) null default null;
