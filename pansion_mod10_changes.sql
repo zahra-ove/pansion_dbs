@@ -95,3 +95,11 @@ CREATE TABLE `statusmalichangedorders` (
   CONSTRAINT `statusmalichangedorders_transaction_fk2` FOREIGN KEY (`returntowallet_tranaction_id`) REFERENCES `transactions` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `statusmalichangedorders_transaction_fk3` FOREIGN KEY (`jarime_tranaction_id`) REFERENCES `transactions` (`id`) ON UPDATE CASCADE
 );
+
+
+//===================================================================
+alter table statusmalichangedorders add column usedin_newchildorder_transaction_id int null default null;
+alter table statusmalichangedorders add index statusmalichangedorders_transaction_indx(usedin_newchildorder_transaction_id);
+alter table statusmalichangedorders add index statusmalichangedorders_transaction_indx(usedin_newchildorder_transaction_id);
+alter table statusmalichangedorders  add constraint statusmalichangedorders_transaction_fk foreign key (usedin_newchildorder_transaction_id) references transactions(id);
+alter table statusmalichangedorders add column usedin_newchildorder_amount decimal(15,2) null default null;
