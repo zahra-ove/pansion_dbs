@@ -106,3 +106,6 @@ alter table statusmalichangedorders add column usedin_newchildorder_amount decim
 
 alter table statusmalichangedorders change returned_type returned_type ENUM('naqd','wallet','naqd_wallet', 'usedin_childorder', 'usedin_childorder_wallet', 'usedin_childorder_naqd') DEFAULT NULL;
 
+
+//================= statusmalis modification
+alter table statusmalis add column total_from_parent_order_amount_paid decimal(15,2) null default null;
