@@ -103,3 +103,6 @@ alter table statusmalichangedorders add index statusmalichangedorders_transactio
 alter table statusmalichangedorders add index statusmalichangedorders_transaction_indx(usedin_newchildorder_transaction_id);
 alter table statusmalichangedorders  add constraint statusmalichangedorders_transaction_fk foreign key (usedin_newchildorder_transaction_id) references transactions(id);
 alter table statusmalichangedorders add column usedin_newchildorder_amount decimal(15,2) null default null;
+
+alter table statusmalichangedorders change returned_type returned_type ENUM('naqd','wallet','naqd_wallet', 'usedin_childorder', 'usedin_childorder_wallet', 'usedin_childorder_naqd') DEFAULT NULL;
+
